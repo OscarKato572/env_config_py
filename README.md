@@ -73,3 +73,10 @@ ambiguous between the integer zero and the string ``"0"``.
   coercion check.
 - ``ConfigError``: raised for unknown keys, missing required keys, unsupported
   type names, and values that fail coercion.
+
+## Performance
+
+The window keeps a bounded buffer, so `push` is constant time and memory does not
+grow with the length of the stream. `peak` and `trough` are linear in the window
+size, which is the trade that keeps `push` cheap.
+
